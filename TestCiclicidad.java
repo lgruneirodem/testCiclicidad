@@ -17,12 +17,26 @@ public class TestCiclicidad {
 					
 					
 					Clave cOg=aristas.consultar(contador).getAtributo();
-					visitados.insertar(contador, cOg);
-					for(int list=1; list<=visitados.longitud();list++) {
+					int list=1;
+					if(visitados.esVacia()) {
+						visitados.insertar(contador, cOg);	
+					}
+					boolean insertado=false;
+					while(list<=visitados.longitud()) {
 						if(aristas.consultar(contador).getValor()==visitados.consultar(list)) {
 							ciclos=true;
 						}
+						//if(cOg==visitados.consultar(list)) {
+						//	insertado=true;
+						//}
+
+						list++;
 					}
+
+					if(ciclos==false) {			
+							visitados.insertar(1,aristas.consultar(contador).getValor());
+					}
+					
 					
 				}
 				contador ++;
