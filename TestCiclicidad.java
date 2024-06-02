@@ -1,13 +1,13 @@
 
 public class TestCiclicidad {
 
-	public static <Clave, InfoVertice, Coste> boolean testCiclos (Grafo<Clave, InfoVertice, Coste> grafo) {
+	public <Clave, InfoVertice, Coste> boolean testCiclos (Grafo<Clave, InfoVertice, Coste> grafo) {
 		if(!grafo.esVacio()) {
 			boolean ciclos = false;
 			Lista <Par<Clave,Clave>> aristas=grafo.listaAristas();
 			int contador=1;
 			while(contador<=aristas.longitud() && ciclos==false) {
-				System.out.println(aristas.consultar(contador).getAtributo() + " "+aristas.consultar(contador).getValor());
+				//System.out.println(aristas.consultar(contador).getAtributo() + " "+aristas.consultar(contador).getValor());
 				if(aristas.consultar(contador).getAtributo()==aristas.consultar(contador).getValor()) {
 					ciclos=true;
 				}
@@ -21,6 +21,7 @@ public class TestCiclicidad {
 	public static void main(String[] args) {
 		// TODO Auto-generated method stub
 		Grafo <String, String, Integer> gPrueba = new Grafo<String, String, Integer>();
+		TestCiclicidad tc=new TestCiclicidad();
 		
 		gPrueba.insertarVertice("A", "A");
 		gPrueba.insertarVertice("B", "B");
@@ -32,27 +33,27 @@ public class TestCiclicidad {
 		gPrueba.insertarArista("C", "B", 1);
 		
 		System.out.println(gPrueba);
-		System.out.println("Grado salida A: " + gPrueba.gradoSalida("A"));
-		System.out.println("Grado salida B: " + gPrueba.gradoSalida("B"));
-		System.out.println("Grado salida C: " + gPrueba.gradoSalida("C"));
-		System.out.println("Grado entrada A: " + gPrueba.gradoEntrada("A"));
-		System.out.println("Grado entrada B: " + gPrueba.gradoEntrada("B"));
-		System.out.println("Grado entrada C: " + gPrueba.gradoEntrada("C"));
+
 		
-		//gPrueba.eliminarVertice("C");
-		//gPrueba.eliminarVertice("B");
-		//gPrueba.eliminarVertice("A");
-		//gPrueba.eliminarArista("A", "C");		
+
 		
-		System.out.println(gPrueba);
-		System.out.println("Grado salida A: " + gPrueba.gradoSalida("A"));
-		System.out.println("Grado salida B: " + gPrueba.gradoSalida("B"));
-		System.out.println("Grado salida C: " + gPrueba.gradoSalida("C"));
-		System.out.println("Grado entrada A: " + gPrueba.gradoEntrada("A"));
-		System.out.println("Grado entrada B: " + gPrueba.gradoEntrada("B"));
-		System.out.println("Grado entrada C: " + gPrueba.gradoEntrada("C"));
+		//Grafo2
+		Grafo <String, String, Integer> g2 = new Grafo<String, String, Integer>();
 		
-		System.out.println(testCiclos(gPrueba));
+		g2.insertarVertice("A", "A");
+		g2.insertarVertice("B", "B");
+		g2.insertarVertice("C", "C");
+		
+		g2.insertarArista("A", "B", 1);
+		g2.insertarArista("A", "C", 1);
+		g2.insertarArista("B", "A", 1);//B a A
+		g2.insertarArista("C", "B", 1);
+		
+		System.out.println(g2);
+
+		
+		System.out.println(tc.testCiclos(gPrueba));
+		System.out.println(tc.testCiclos(g2));
 		
 		System.out.println("*** FIN ***");
 
