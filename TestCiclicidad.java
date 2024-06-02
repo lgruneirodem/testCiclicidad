@@ -5,11 +5,25 @@ public class TestCiclicidad {
 		if(!grafo.esVacio()) {
 			boolean ciclos = false;
 			Lista <Par<Clave,Clave>> aristas=grafo.listaAristas();
+			Lista<Clave>visitados = new Lista<Clave>();
+			
 			int contador=1;
 			while(contador<=aristas.longitud() && ciclos==false) {
 				//System.out.println(aristas.consultar(contador).getAtributo() + " "+aristas.consultar(contador).getValor());
 				if(aristas.consultar(contador).getAtributo()==aristas.consultar(contador).getValor()) {
 					ciclos=true;
+				}
+				else {
+					
+					
+					Clave cOg=aristas.consultar(contador).getAtributo();
+					visitados.insertar(contador, cOg);
+					for(int list=1; list<=visitados.longitud();list++) {
+						if(aristas.consultar(contador).getValor()==visitados.consultar(list)) {
+							ciclos=true;
+						}
+					}
+					
 				}
 				contador ++;
 			}
