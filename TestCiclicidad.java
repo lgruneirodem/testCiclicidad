@@ -78,10 +78,21 @@ public class TestCiclicidad {
 		g2.insertarArista("C", "B", 1);
 		
 		System.out.println(g2);
+		
+		//Grafo3
+		Grafo <String, String, Integer> g3 = new Grafo<String, String, Integer>();
+		
+		g3.insertarVertice("A", "A");
+		g3.insertarVertice("B", "B");
+		g3.insertarVertice("C", "C");
+		
+		g3.insertarArista("A", "B", 1);
+		g3.insertarArista("A", "C", 1);
 
 		
 		System.out.println(tc.testCiclos(gPrueba));
 		System.out.println(tc.testCiclos(g2));
+		System.out.println(tc.testCiclos(g3));
 		
 		System.out.println("*** FIN ***");
 
